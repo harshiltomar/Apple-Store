@@ -11,7 +11,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: MyTheme.creamColor,
       bottomNavigationBar: Container(
         color: Colors.white,
@@ -26,7 +28,7 @@ class HomeDetailPage extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all(MyTheme.darkBluish,),
                     shape: MaterialStateProperty.all(StadiumBorder())
                 ),
-                child: "Buy".text.make()).wh(100, 50),
+                child: "Add to Cart".text.make()).wh(120, 50),
 
           ],
         ).p32(),
@@ -51,6 +53,11 @@ class HomeDetailPage extends StatelessWidget {
                     catalog.name.text.xl4.color(MyTheme.darkBluish).bold.make(),
                     catalog.desc.text.xl.textStyle(context.captionStyle).make(),
                     10.heightBox,
+                    " The lorem ipsum is a placeholder text used in publishing and graphic design. This filler text is a short paragraph that contains all the letters of the alphabet. The characters are spread out evenly so that the reader’s attention".
+                    text.
+                    textStyle(context.captionStyle).
+                    make().
+                    p16(),
                   ],
                 ).py64(),
               ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:codepur/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -47,9 +48,14 @@ class _HomePageState extends State<HomePage> {
     var catalogModel = CatalogModel;
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        child: Icon(Icons.shopping_cart),
+        backgroundColor: MyTheme.darkBluish,
+      ),
       body: SafeArea(
         child: Container(
-          padding: Vx.m32,
+          padding: Vx.m8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
