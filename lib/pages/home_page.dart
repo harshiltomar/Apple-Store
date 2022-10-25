@@ -11,7 +11,6 @@ import '../widgets/home_widgets/catalog_list.dart';
 import '../widgets/item_widget.dart';
 import 'package:codepur/widgets/themes.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -47,12 +46,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var catalogModel = CatalogModel;
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-        child: Icon(Icons.shopping_cart),
-        backgroundColor: MyTheme.darkBluish,
+        child: Icon(Icons.shopping_cart,
+        color: Colors.white,),
+        backgroundColor: context.theme.buttonColor,
       ),
+
       body: SafeArea(
         child: Container(
           padding: Vx.m8,
@@ -60,7 +61,8 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CatalogHeader(),
-              if (CatalogModel.items.isNotEmpty)
+              if (CatalogModel.items != null &&
+                  CatalogModel.items!.isNotEmpty)
                 CatalogList().p16().expand()
               else
                 CircularProgressIndicator().centered().expand(),
@@ -71,6 +73,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
