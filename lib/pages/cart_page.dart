@@ -14,7 +14,6 @@ class CartPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: "Cart".text.center.make(),
       ),
-
       body: Column(
         children: [
           CartList().p32().expand(),
@@ -37,16 +36,22 @@ class CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}".text.xl5.color(context.theme.accentColor).make(),
+          "\$${_cart.totalPrice}"
+              .text
+              .xl5
+              .color(context.theme.accentColor)
+              .make(),
           30.widthBox,
           ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: "Some items are out of Stock !".text.make(),));
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(context.theme.buttonColor)
-              ),
-              child: "Buy".text.white.make(),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: "Some items are out of Stock !".text.make(),
+              ));
+            },
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(context.theme.buttonColor)),
+            child: "Buy".text.white.make(),
           ).w32(context),
         ],
       ),
@@ -65,18 +70,21 @@ class _CartListState extends State<CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: _cart.items?.length,
-        itemBuilder: (context,index) => ListTile(
-          leading: Icon(Icons.done),
-          trailing: IconButton(
-            icon: Icon(Icons.remove_circle_outline),
-            onPressed: () {},
-          ),
-          title: _cart.items[index].name.text.make(),
-        ),
-    );
+    return _cart.items.isEmpty
+        ? "Nothing to show".text.xl2.makeCentered()
+        : ListView.builder(
+            itemCount: _cart.items?.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                icon: Icon(Icons.remove_circle_outline),
+                onPressed: () {
+                  _cart.remove(_cart.items[index]);
+                  setState(() {});
+                },
+              ),
+              title: _cart.items[index].name.text.make(),
+            ),
+          );
   }
 }
-
-
